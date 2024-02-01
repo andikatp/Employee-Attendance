@@ -4,8 +4,8 @@ import 'package:employee_attendance/features/auth/domain/entities/user_entity.da
 import 'package:employee_attendance/features/auth/domain/repositories/auth_repository.dart';
 import 'package:equatable/equatable.dart';
 
-class Login implements UseCaseWithParams<UserEntity, LoginParams> {
-  Login({required AuthRepository repository}) : _repository = repository;
+class SignIn implements UseCaseWithParams<UserEntity, LoginParams> {
+  SignIn({required AuthRepository repository}) : _repository = repository;
   final AuthRepository _repository;
 
   @override
