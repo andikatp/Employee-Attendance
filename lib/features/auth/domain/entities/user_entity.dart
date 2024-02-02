@@ -9,6 +9,15 @@ class UserEntity extends Equatable {
     required this.employeeId,
   });
 
+  const UserEntity.empty()
+      : this(
+          id: '',
+          name: '',
+          email: '',
+          department: 0,
+          employeeId: '',
+        );
+
   final String id;
   final String email;
   final String name;
