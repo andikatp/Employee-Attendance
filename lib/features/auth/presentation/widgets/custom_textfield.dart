@@ -1,14 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextfield extends StatefulWidget {
-  final String text;
-  final String hintText;
-  final TextEditingController textEditingController;
-  final TextInputType inputType;
-  final bool password;
-  final String? Function(String?)? validator;
   const CustomTextfield({
     required this.text,
     required this.hintText,
@@ -18,6 +11,12 @@ class CustomTextfield extends StatefulWidget {
     this.inputType = TextInputType.text,
     this.password = false,
   });
+  final String text;
+  final String hintText;
+  final TextEditingController textEditingController;
+  final TextInputType inputType;
+  final bool password;
+  final String? Function(String?)? validator;
 
   @override
   State<CustomTextfield> createState() => _CustomTextfieldState();
@@ -41,7 +40,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             obscureText: _obsecureText && widget.password,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(10).r,
                 borderSide: BorderSide(color: Colors.grey.shade500),
               ),
               focusedBorder: OutlineInputBorder(
