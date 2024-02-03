@@ -6,33 +6,33 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+enum PageTransitionType {
+  slideInLeft,
+  slideInRight,
+  fade,
+}
+
 final goRouter = GoRouter(
   initialLocation: '/signIn',
   routes: [
     GoRoute(
       path: '/signIn',
       name: AppNameRoute.signIn,
-      builder: (context, state) => BlocProvider(
-        create: (context) => sl<AuthBloc>(),
-        child: const SignInPage(),
+      pageBuilder: (context, state) => _page(
+        state, 
+        transitionType: PageTransitionType.slideInRight,
+        BlocProvider(
+          create: (context) => sl<AuthBloc>(),
+          child: const SignInPage(),
+        ),
       ),
     ),
     GoRoute(
       path: '/signUp',
       name: AppNameRoute.signUp,
-      pageBuilder: (context, state) => CustomTransitionPage(
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          const begin = Offset(1, 0);
-          const end = Offset.zero;
-          const curve = Curves.ease;
-          final tween =
-              Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-          return SlideTransition(
-            position: animation.drive(tween),
-            child: child,
-          );
-        },
-        child: BlocProvider(
+      pageBuilder: (context, state) => _page(
+        state,
+        BlocProvider(
           create: (context) => sl<AuthBloc>(),
           child: const SignUpPage(),
         ),
@@ -40,6 +40,42 @@ final goRouter = GoRouter(
     ),
   ],
 );
+
+CustomTransitionPage<dynamic> _page(
+  GoRouterState state,
+  Widget child, {
+  PageTransitionType transitionType = PageTransitionType.slideInLeft,
+}) {
+  return CustomTransitionPage(
+    key: state.pageKey,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      switch (transitionType) {
+        case PageTransitionType.slideInLeft:
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        case PageTransitionType.slideInRight:
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        case PageTransitionType.fade:
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+      }
+    },
+    child: child,
+  );
+}
 
 class AppNameRoute {
   AppNameRoute._();
