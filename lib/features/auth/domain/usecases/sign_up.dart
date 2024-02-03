@@ -9,21 +9,21 @@ class SignUp extends UseCaseWithParams<void, SignUpParams> {
 
   @override
   ResultFuture<void> call(SignUpParams params) {
-    return _repository.signUp(params.username, params.email, params.password);
+    return _repository.signUp(params.name, params.email, params.password);
   }
 }
 
 class SignUpParams extends Equatable {
   const SignUpParams({
-    required this.username,
+    required this.name,
     required this.email,
     required this.password,
   });
 
-  final String username;
+  final String name;
   final String email;
   final String password;
 
   @override
-  List<Object?> get props => [username, email, password];
+  List<Object?> get props => [name, email, password];
 }
