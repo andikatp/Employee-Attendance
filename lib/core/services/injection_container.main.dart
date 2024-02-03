@@ -2,7 +2,7 @@ part of 'injection_container.dart';
 
 final sl = GetIt.instance;
 
-Future<void> main() async {
+Future<void> init() async {
   sl
     ..registerFactory(() => AuthBloc(signIn: sl(), signUp: sl(), signOut: sl()))
     ..registerLazySingleton(() => SignIn(repository: sl()))
@@ -17,6 +17,6 @@ Future<void> main() async {
     ..registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(networkInfo: sl()),
     )
-    ..registerLazySingleton(() => SupabaseClient.new)
+    ..registerLazySingleton(()=>Supabase.instance.client)
     ..registerLazySingleton(InternetConnection.new);
 }

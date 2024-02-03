@@ -1,14 +1,18 @@
-import 'package:employee_attendance/core/constants/colours.dart';
 import 'package:flutter/material.dart';
+
 
 class AppTheme {
   const AppTheme._();
-  static final theme = ThemeData().copyWith(
+  static final theme = ThemeData(
+    primaryColor: Colors.red,
+    primarySwatch: Colors.red,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    colorScheme: ColorScheme.fromSeed(seedColor: Colours.primaryColor),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colours.primaryColor,
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
     ),
   );
