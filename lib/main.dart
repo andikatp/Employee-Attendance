@@ -19,13 +19,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      child: MaterialApp(
-        title: 'Employee Attendance',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.dark,
+      child: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: GestureDetector(
+          child: MaterialApp(
+            title: 'Employee Attendance',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              brightness: Brightness.dark,
+            ),
+            home: const AuthPage(),
+          ),
         ),
-        home: const AuthPage(),
       ),
     );
   }
