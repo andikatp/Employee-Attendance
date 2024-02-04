@@ -19,7 +19,7 @@ final goRouter = GoRouter(
       path: '/signIn',
       name: AppNameRoute.signIn,
       pageBuilder: (context, state) => _page(
-        state, 
+        state,
         transitionType: PageTransitionType.slideInRight,
         BlocProvider(
           create: (context) => sl<AuthBloc>(),
@@ -30,6 +30,17 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/signUp',
       name: AppNameRoute.signUp,
+      pageBuilder: (context, state) => _page(
+        state,
+        BlocProvider(
+          create: (context) => sl<AuthBloc>(),
+          child: const SignUpPage(),
+        ),
+      ),
+    ),
+    GoRoute(
+      path: '/home',
+      name: AppNameRoute.home,
       pageBuilder: (context, state) => _page(
         state,
         BlocProvider(

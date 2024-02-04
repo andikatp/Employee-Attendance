@@ -1,3 +1,4 @@
+import 'package:employee_attendance/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,6 +39,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
             controller: widget.textEditingController,
             keyboardType: widget.inputType,
             obscureText: _obsecureText && widget.password,
+            cursorColor: context.theme.primaryColor,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10).r,

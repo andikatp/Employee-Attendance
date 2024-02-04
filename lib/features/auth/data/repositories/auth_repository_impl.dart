@@ -45,7 +45,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   ResultFuture<void> signUp(
-    String username,
     String email,
     String password,
   ) async {
@@ -53,7 +52,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (!await _networkInfo.isConnected) {
         return const Left(InternetFailure());
       }
-      final result = await _remoteDataSource.signOut();
+      final result = await _remoteDataSource.signUp(email, password);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(message: e.message));

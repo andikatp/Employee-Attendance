@@ -5,6 +5,6 @@ abstract class AuthRepository {
   const AuthRepository();
 
   ResultFuture<UserEntity> signIn(String email, String password);
-  ResultFuture<void> signUp(String username, String email, String password);
+  ResultFuture<void> signUp(String email, String password);
   ResultFuture<void> signOut();
 }

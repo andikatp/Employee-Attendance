@@ -20,7 +20,7 @@ class UserEntity extends Equatable {
 
   final String id;
   final String email;
-  final String name;
+  final String? name;
   final int? department;
   final String employeeId;
 
