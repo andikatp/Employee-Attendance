@@ -40,7 +40,10 @@ class SignInPage extends StatelessWidget {
             context.messenger
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
-          if (state is SignedUp) {}
+          if (state is SignedUp) {
+            context.pushNamed(AppNameRoute.home);
+
+          }
         },
         builder: (context, state) {
           return Form(

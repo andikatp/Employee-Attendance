@@ -43,7 +43,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> signUpHandler(SignUpEvent event, Emitter<AuthState> emit) async {
     final result = await _signUp(
       SignUpParams(
-        name: event.name,
         email: event.email,
         password: event.password,
       ),
