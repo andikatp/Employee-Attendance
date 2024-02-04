@@ -30,12 +30,14 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> signIn(String email, String password) async {
     try {
-      await _supabase.auth.signInWithPassword(email: email, password: password);
+      // await _supabase.auth.signInWithPassword(email: email, password: password);
+      print(_supabase.auth.currentUser);
       final userData = await _supabase
           .from(AppConstant.employeeTable)
           .select<PostgrestList>()
           .eq('id', _supabase.auth.currentUser?.id)
           .single();
+          print(userData);
       return UserModel.fromJson(userData as ResultMap);
     } on AuthException catch (e) {
       throw ServerException(message: e.message);
@@ -51,6 +53,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         email: email,
         password: password,
       );
+      print(response);
       if (response.user != null) {
         await _supabase.from(AppConstant.employeeTable).insert({
           'id': response.user!.id,

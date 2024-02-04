@@ -1,3 +1,4 @@
+import 'package:employee_attendance/core/constants/app_sizes.dart';
 import 'package:employee_attendance/core/services/router.dart';
 import 'package:employee_attendance/core/utils/extensions.dart';
 import 'package:employee_attendance/features/auth/presentation/bloc/auth_bloc.dart';
@@ -31,6 +32,7 @@ class SignInPage extends StatelessWidget {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
@@ -45,26 +47,24 @@ class SignInPage extends StatelessWidget {
             key: formKey,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 50,
-                ),
+                Gap.h48,
                 KeyboardVisibilityBuilder(
                   builder: (context, isKeyboardVisible) => isKeyboardVisible
                       ? const SizedBox()
                       : Image.asset(
                           'assets/logo.png',
-                          height: 110,
-                          width: 110,
+                          height: 110.h,
+                          width: 110.h,
                         ),
                 ),
-                const SizedBox(height: 20),
+                Gap.h20,
                 Text(
                   'Masuk ke akun Teo',
                   style: context.textTheme.headlineSmall
                       ?.copyWith(fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 20),
+                Gap.h20,
                 CustomTextfield(
                   text: 'Email Anda',
                   hintText: 'nama@email.com',
@@ -80,7 +80,7 @@ class SignInPage extends StatelessWidget {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                Gap.h20,
                 CustomTextfield(
                   text: 'Kata Sandi',
                   hintText: '*******',
@@ -97,7 +97,7 @@ class SignInPage extends StatelessWidget {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                Gap.h20,
                 Padding(
                   padding: REdgeInsets.symmetric(horizontal: 20),
                   child: state is AuthLoading
@@ -107,7 +107,7 @@ class SignInPage extends StatelessWidget {
                       : ElevatedButton(
                           onPressed: onSignInTapped,
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(1.sw, 50),
+                            minimumSize: Size(1.sw, 50.h),
                           ),
                           child: const Text('Masuk'),
                         ),
