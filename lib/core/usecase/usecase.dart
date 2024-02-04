@@ -6,7 +6,7 @@ abstract class UseCaseWithParams<Type, Params> {
   ResultFuture<Type> call(Params params);
 }
 
-abstract class UseCaseWithoutParams<Type, Params> {
+abstract class UseCaseWithoutParams<Type> {
   const UseCaseWithoutParams();
 
   ResultFuture<Type> call();

@@ -1,8 +1,6 @@
 import 'dart:math';
-
 import 'package:employee_attendance/core/constants/app_constant.dart';
 import 'package:employee_attendance/core/error/exception.dart';
-import 'package:employee_attendance/core/utils/utils.dart';
 import 'package:employee_attendance/features/auth/data/model/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,7 +33,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           .select<PostgrestMap>()
           .eq('id', _supabase.auth.currentUser?.id)
           .single();
-          print(userData);
       return UserModel.fromJson(userData);
     } on AuthException catch (e) {
       throw ServerException(message: e.message);
@@ -47,7 +44,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> signUp(String email, String password) async {
     try {
-      print('$email, $password');
       final response = await _supabase.auth.signUp(
         email: email,
         password: password,
